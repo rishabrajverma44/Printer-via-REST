@@ -1,0 +1,43 @@
+{
+  "name": "electron",
+  "version": "1.0.0",
+  "main": "./app/main.js",
+  "description": "PrinterApp Electron application",
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "start": "electron ./app/main.js",
+    "dev": "electronmon ./app/main.js",
+    "dist": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^38.0.0",
+    "electron-builder": "^26.0.12",
+    "electronmon": "^2.0.3"
+  },
+  "dependencies": {
+    "axios": "^1.11.0",
+    "express": "^5.1.0",
+    "get-port": "^6.1.2",
+    "pdf-to-printer": "^5.6.0",
+    "winston": "^3.17.0",
+    "winston-daily-rotate-file": "^5.0.0"
+  },
+  "build": {
+    "appId": "com.yourname.printerapp",
+    "productName": "PrinterApp",
+    "directories": {
+      "output": "dist"
+    },
+    "mac": {
+      "icon": "assets/icon.icns",
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    },
+    "files": [
+      "app/**/*"
+    ]
+  }
+}
