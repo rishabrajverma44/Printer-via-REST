@@ -1,10 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Silent Print</title>
+    <title>Printer</title>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+      #logs {
+        white-space: pre-line;
+        font-size: 14px;
+        color: #333;
+      }
+    </style>
   </head>
   <body>
-    <h1>Test Silent Print</h1>
-    <p>This will print silently...</p>
+    <h1>Silent Printer Service</h1>
+    <div id="logs"></div>
+
+    <script>
+      const { ipcRenderer } = require("electron");
+      const logsDiv = document.getElementById("logs");
+
+      ipcRenderer.on("api-log", (event, message) => {
+        const line = document.createElement("div");
+        line.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+        logsDiv.appendChild(line);
+        logsDiv.scrollTop = logsDiv.scrollHeight; // auto-scroll
+      });
+    </script>
   </body>
 </html>

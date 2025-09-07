@@ -1,5 +1,6 @@
 {
   "name": "electron",
+  "productName": "Printer App",
   "version": "1.0.0",
   "main": "./app/main.js",
   "description": "PrinterApp Electron application",
@@ -19,15 +20,20 @@
     "axios": "^1.11.0",
     "express": "^5.1.0",
     "get-port": "^6.1.2",
-    "pdf-to-printer": "^5.6.0",
-    "winston": "^3.17.0",
-    "winston-daily-rotate-file": "^5.0.0"
+    "pdf-to-printer": "^5.6.0"
   },
   "build": {
-    "appId": "com.yourname.printerapp",
+    "appId": "com.rishab.printerapp",
     "productName": "PrinterApp",
     "directories": {
       "output": "dist"
+    },
+    "files": [
+      "app/**/*"
+    ],
+    "win": {
+      "icon": "assets/icon.ico",
+      "target": "nsis"
     },
     "mac": {
       "icon": "assets/icon.icns",
@@ -36,8 +42,9 @@
         "zip"
       ]
     },
-    "files": [
-      "app/**/*"
-    ]
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   }
 }
