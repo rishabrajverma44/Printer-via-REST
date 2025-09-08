@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Printer</title>
+    <title>Printer App</title>
     <style>
       body {
         font-family: sans-serif;
@@ -10,22 +10,31 @@
         white-space: pre-line;
         font-size: 14px;
         color: #333;
+        background-color: #dadada;
+        padding: 3px;
+        margin: 5px;
       }
     </style>
   </head>
   <body>
-    <h1>Silent Printer Service</h1>
+    <h2>Silent Printer Service</h2>
+    <button id="clear">clear log</button>
     <div id="logs"></div>
 
     <script>
       const { ipcRenderer } = require("electron");
       const logsDiv = document.getElementById("logs");
+      const clearBtn = document.getElementById("clear");
 
       ipcRenderer.on("api-log", (event, message) => {
         const line = document.createElement("div");
         line.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
         logsDiv.appendChild(line);
-        logsDiv.scrollTop = logsDiv.scrollHeight; // auto-scroll
+        logsDiv.scrollTop = logsDiv.scrollHeight;
+      });
+
+      clearBtn.addEventListener("click", () => {
+        logsDiv.innerHTML = "";
       });
     </script>
   </body>

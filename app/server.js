@@ -20,7 +20,7 @@ async function startServer(port, logFn) {
 
     try {
       await printFile(filePath, printerName);
-      logFn?.("Print job sent successfully");
+      logFn?.(`Printing process started with ${printerName}`);
       res.send({ success: true });
     } catch (err) {
       logFn?.(`Print failed: ${err.message}`);
@@ -33,6 +33,12 @@ async function startServer(port, logFn) {
     try {
       const printers = await printer.getPrinters();
       logFn?.(`Found ${printers.length} printers`);
+      logFn?.(
+        "--------------------------------------------------------------------"
+      );
+      printers.map((printer) => {
+        return logFn?.(`printer-id: ${printer.deviceId}`);
+      });
       res.send(printers);
     } catch (err) {
       logFn?.(`Error fetching printers: ${err.message}`);
