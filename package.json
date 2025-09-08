@@ -1,10 +1,10 @@
 {
   "name": "electron",
-  "productName": "Printer App",
+  "productName": "PrinterApp",
   "version": "1.0.0",
   "main": "./app/main.js",
   "description": "PrinterApp Electron application",
-  "author": "",
+  "author": "Rishab",
   "license": "ISC",
   "scripts": {
     "start": "electron ./app/main.js",
@@ -29,8 +29,12 @@
       "output": "dist"
     },
     "files": [
-      "app/**/*"
+      "app/**/*",
+      "!**/locales/*",
+      "locales/en-US.pak"
     ],
+    "asar": true,
+    "compression": "maximum",
     "win": {
       "icon": "assets/icon.ico",
       "target": "nsis"
@@ -38,8 +42,18 @@
     "mac": {
       "icon": "assets/icon.icns",
       "target": [
-        "dmg",
-        "zip"
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "arm64"
+          ]
+        }
       ]
     },
     "nsis": {
